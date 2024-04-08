@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign-up Form! :D</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .input-field {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    .btn {
+      padding: 5px 10   px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    #output {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+    <form id="Sign-up">
+    <fieldset>
+      <legend><b><Sign-up></Sign-up></b></legend>
+
+      <div>
+        <label for="fullName">Full Name: </label><br/>
+        <input type="text" id="fullName" name="fullName" class="input-field" onblur="validate(this)" onfocus="clearValidation(this)"> 
+        <br>
+      </div>
+
+      <div>
+        <label for="email">Email:</label> <br>
+        <input type="email" name="email" id="email" class="input-field" onblur="validate(this)" onfocus="clearValidation(this)">
+      </div>
+      
+      <div>
+        <label for="username">Username: </label> <br>
+        <input type="text" id="username" name="username" class="input-field" onblur="validate(this)" onfocus="clearValidation(this)"> 
+        <br>
+      </div>
+
+      <div>
+        <label for="password">Password: </label> <br>
+        <input type="password" name="password" id="password" class="input-field" onblur="validate(this)" onfocus="clearValidation(this)">
+      </div>
+
+      <div>
+        <label for="gender">Gender</label><br>
+        <select name="gender" id="gender" class="input-field" onblur="validate(this)" onfocus="clearValidation(this)">
+          <option value="" disabled selected>Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Prefer not to mention">Prefer not to mention</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="address">Address: </label><br>
+        <input type="text" name="address" id="address" class="input-field" onblur="validate(this)" onfocus="clearValidation(this)">
+      </div>
+
+      <div>
+        <label for="interests">Interests: </label><br>
+        <textarea id="interests" name="interests" rows="4" cols="30" class="input-field" onblur="validate(this)" onfocus="clearValidation(this)"></textarea>
+      </div>
+
+      <div >
+        <input type="submit" value="Submit" class="btn">
+        <button type="reset" class="btn">Reset</button>
+      </div>
+
+    </fieldset>
+
+    <fieldset>
+      <legend><b>Information</b></legend>
+      <div id="output"></div>
+    </fieldset>
+  </form>
+</div>
+<script>
+  function validate(inputElement) {
+    if (inputElement.value.trim() === '') {
+      inputElement.style.border = '1px solid red';
+    } else {
+      inputElement.style.border = '1px solid green';
+    }
+  }
+
+  function clearValidation(inputElement) {
+    inputElement.style.border = '';
+  }
+
+  document.getElementById('Sign-up').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var fullName = document.getElementById('fullName').value;
+    var email = document.getElementById('email').value;
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    var gender = document.getElementById('gender').value;
+    var address = document.getElementById('address').value;
+    var interests = document.getElementById('interests').value;
+
+    var outputDiv = document.getElementById('output');
+    outputDiv.innerHTML = `<h2>Registration Information</h2>
+                          <p><strong>Name:</strong> ${fullName}</p>
+                          <p><strong>Email:</strong> ${email}</p>
+                          <p><strong>Username:</strong> ${username}</p>
+                          <p><strong>Password:</strong> ${password}</p>
+                          <p><strong>Gender:</strong> ${gender}</p>
+                          <p><strong>Address:</strong> ${address}</p>
+                          <p><strong>Interests:</strong> ${interests}</p>`;
+  });
+
+  document.getElementById('Sign-up').addEventListener('reset', function(event) {
+    var outputDiv = document.getElementById('output');
+    outputDiv.innerHTML = '';
+  });
+</script>
+
+</body>
+
+</html>
